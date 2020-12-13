@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Comptible" content='IE=edge'>
+    <title>branch</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel='stylesheet' type="text/css" media="screen" href="main.css">
+    <script src="main.js"></script>
+    
+</head>
+<body>
+    <form action="branch" method="post">
+        {% csrf_token %}
+
+        <input type="text" name="branch_code" placeholder="branch_code"><br>
+        <input type="text" name="branch_name" placeholder="branch_name"><br>
+        <input type="text" name="branch_addres" placeholder="branch_addres"><br>
+        <input type="submit" value="ADD BRANCH">
+    </form>
+    
+
+</body>
+</html>
