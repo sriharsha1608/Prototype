@@ -63,23 +63,32 @@ def transaction(request):
             if request.POST.get('Transaction_Type') == 'DEBIT':
                 if source_inventory is None:
                     inventory=Inventory()
-                    inventory.item_id = request.POST.get('item_id')
-                    inventory.branch_code = request.POST.get('branch_code')
-                    inventory.quantity = request.POST.get('quantity')
+                    item_id = request.POST.get('item_id')
+                    item = Item.objects.get(id=item_id)
+                    inventory.item_id = item
+                    branch_code = request.POST.get('branch_code')
+                    branch = Branch.objects.get(branch_code=branch_code)
+                    inventory.branch_code = branch
+                    inventory.quantity = - (t_quantity)
                     inventory.save()
                     source_inventory.quantity = source_inventory.quantity - 2(t_quantity)
                 elif destination_inventory is None:
                     inventory=Inventory()
-                    inventory.item_id = request.POST.get('item_id')
-                    inventory.branch_code = request.POST.get('branch_code')
-                    inventory.quantity = request.POST.get('quantity')
+                    item_id = request.POST.get('item_id')
+                    item = Item.objects.get(id=item_id)
+                    inventory.item_id = item
+                    branch_code = request.POST.get('branch_code')
+                    branch = Branch.objects.get(branch_code=branch_code)
+                    inventory.branch_code = branch
+                    inventory.quantity = t_quantity
                     inventory.save()
                 else:
                     source_inventory.quantity -= t_quantity
                     destination_inventory.quantity += t_quantity
             else:
-              source_inventory.quantity += t_quantity
-              destination_inventory.quantity -= t_quantity
+                source_inventory.quantity += t_quantity
+                destination_inventory.quantity -= t_quantity
+                
             source_inventory.save()
             destination_inventory.save()
             return redirect('/')    
@@ -90,8 +99,12 @@ def inventory(request):
     if request.method == 'POST':
         if request.POST.get('item_id') and request.POST.get('quantity') and request.POST.get('branch_code'):
             inventory=Inventory()
-            inventory.item_id = request.POST.get('item_id')
-            inventory.branch_code = request.POST.get('branch_code')
+            item_id = request.POST.get('item_id')
+            item = Item.objects.get(id=item_id)
+            inventory.item_id = item
+            branch_code = request.POST.get('branch_code')
+            branch = Branch.objects.get(branch_code=branch_code)
+            inventory.branch_code = branch
             inventory.quantity = request.POST.get('quantity')
             inventory.save()
 
