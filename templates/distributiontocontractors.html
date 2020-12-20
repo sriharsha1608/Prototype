@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Comptible" content='IE=edge'>
+    <title>Distribution</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel='stylesheet' type="text/css" media="screen" href="main.css">
+    <script src="main.js"></script>
+    
+</head>
+<body>
+    <form action="distributiontocontractors" method="post">
+        {% csrf_token %}
+
+        <input type = "number" name = "item_id" placeholder = "item_id"><br>
+        <input type = "text" name = "branch" placeholder = "branch"><br>
+        <input type = "number" name = "contractor_id" placeholder = "contractor_id"><br>
+        <input type = 'number' name = "quantity" placeholder = "Quantity"><br>
+        <input type = 'text' name = "transaction_type" placeholder = "OUT or IN"><br>
+        <input type = "submit">
+    </form>
+    
+
+
+
+    <div>
+        {% for i in messages %}
+        <h3>{{i}}</h3>
+        {% endfor %}
+    </div>
+
+</body>
+</html>
